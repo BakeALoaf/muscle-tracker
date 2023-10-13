@@ -1,1 +1,12 @@
 <h1>list of workouts</h1>
+<%@track.each do |t|%>
+  <div>
+    <p><%= t.workout%></p>
+    <p><%= t.weight%> KG</p>
+    <p><%= t.reps%> Reps</p>
+    <p><%= t.sets%> Sets</p>
+  </div>
+<% end %>
+<div>
+  <a href="/trackers/new">Track</a>
+</div>
