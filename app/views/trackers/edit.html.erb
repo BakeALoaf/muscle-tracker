@@ -1,0 +1,15 @@
+<h1>Edit</h1>
+<%= form_for @tracker do |f| %>
+  <%= f.label :workout %>
+  <%= f.text_field :workout %>
+
+  <%= f.label :weight %>
+  <%= f.text_field :weight %>
+
+  <%= f.label :reps %>
+  <%= f.text_field :reps %>
+
+  <%= f.label :sets %>
+  <%= f.text_field :sets %>
+  <%= f.submit %>
+<% end %>
