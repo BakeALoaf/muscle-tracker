@@ -1,12 +1,40 @@
-<h1>list of workouts</h1>
-<%@track.each do |t|%>
-  <div>
-    <p><%= t.workout%></p>
-    <p><%= t.weight%> KG</p>
-    <p><%= t.reps%> Reps</p>
-    <p><%= t.sets%> Sets</p>
+<h1>List of Workouts</h1>
+<% @track.each do |t| %>
+  <div class="tracker-item">
+    <p class="editable-field" data-attribute="workout"><%= t.workout %></p>
+    <p class="editable-field" data-attribute="weight"><%= t.weight %> KG</p>
+    <p class="editable-field" data-attribute="reps"><%= t.reps %> Reps</p>
+    <p class="editable-field" data-attribute="sets"><%= t.sets %> Sets</p>
   </div>
 <% end %>
 <div>
   <a href="/trackers/new">Track</a>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.editable-field').click(function () {
+      $(this).attr('contenteditable', 'true');
+    });
+
+    $('.editable-field').blur(function () {
+      $(this).removeAttr('contenteditable');
+      const attribute = $(this).data('attribute');
+      const value = $(this).text();
+      const id = $(this).closest('.tracker-item').data('id'); // Set the data-id attribute on tracker-item
+
+      // Use AJAX to send the updated data to the server
+      $.ajax({
+        type: 'PATCH',
+        url: `/trackers/${id}`,
+        data: {
+          tracker: {
+            [attribute]: value
+          }
+        },
+      });
+    });
+  });
+</script>
