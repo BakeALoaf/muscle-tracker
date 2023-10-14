@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     if @session.save
       redirect_to root_path
     else
+      puts "Session errors: #{@session.errors.full_messages}"
       render :new
     end
   end
