@@ -1,6 +1,7 @@
 class TrackersController < ApplicationController
   def index
     @track = Tracker.all
+    @session = Session.all
   end
 
   def show
@@ -8,7 +9,6 @@ class TrackersController < ApplicationController
 
   def new
     @tracker = Tracker.new
-    @session = Session.all
   end
 
   def create
