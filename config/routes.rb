@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :trackers
+
+  resources :sessions, only: [:new, :create]
+
 end

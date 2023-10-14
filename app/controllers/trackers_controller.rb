@@ -8,6 +8,7 @@ class TrackersController < ApplicationController
 
   def new
     @tracker = Tracker.new
+    @session = Session.all
   end
 
   def create
@@ -33,6 +34,6 @@ class TrackersController < ApplicationController
   end
 
   def tracker_params
-    params.require(:tracker).permit(:workout, :weight, :reps, :sets)
+    params.require(:tracker).permit(:workout, :weight, :reps, :sets, :session_id)
   end
 end
