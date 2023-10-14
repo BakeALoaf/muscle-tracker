@@ -8,11 +8,13 @@ class TrackersController < ApplicationController
   end
 
   def new
-    @tracker = Tracker.new
+    @session = Session.find(params[:session_id])
+    @tracker = @session.trackers.build
   end
 
   def create
-    @tracker = Tracker.new(tracker_params)
+    @session = Session.find(params[:session_id])
+    @tracker = @session.trackers.build(tracker_params)
     if @tracker.save!
       redirect_to trackers_path
     else

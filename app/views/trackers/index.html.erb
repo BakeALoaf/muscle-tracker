@@ -1,29 +1,33 @@
 <h1>List of Workouts</h1>
 
 <% @session.each do |s| %>
-    <div class="tracker-item" data-id="<%= s.id %>">
-            <p class="editable-field" data-attribute="weight" data-remote="true"><%= s.workout %></p>
-    </div>
-    <% @track.each do |t| %>
-    <div class="workoutcard">
-      <div class="tracker-item" data-id="<%= t.id %>">
-          <div class="numbers">
-            <div class="weightfield">
-              <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> KG</p>
-            </div>
-            <div class="repsfield">
-              <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
-            </div>
-            <div class="setsfield">
-              <p class "editable-field" data-attribute="sets" data-remote="true"><%= t.sets %> Sets</p>
-            </div>
-          </div>
+  <div class="tracker-item" data-id="<%= s.id %>">
+    <div class="workout-details">
+      <p class="editable-field" data-attribute="weight" data-remote="true"><%= s.workout %></p>
+      <div class="addsymbol">
+        <a href="/trackers/new?session_id=<%= s.id %>" class="plus-icon"><i class="fas fa-plus"></i></a>
       </div>
     </div>
-  <% end %>
+  </div>
 <% end %>
 
-
+<% @track.each do |t| %>
+<div class="workoutcard">
+  <div class="tracker-item" data-id="<%= t.id %>">
+      <div class="numbers">
+        <div class="weightfield">
+          <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> KG</p>
+        </div>
+        <div class="repsfield">
+          <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
+        </div>
+        <div class="setsfield">
+          <p class "editable-field" data-attribute="sets" data-remote="true"><%= t.sets %> Sets</p>
+        </div>
+      </div>
+  </div>
+</div>
+<% end %>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
