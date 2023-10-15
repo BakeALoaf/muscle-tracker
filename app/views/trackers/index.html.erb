@@ -3,31 +3,30 @@
 <% @session.each do |s| %>
   <div class="tracker-item" data-id="<%= s.id %>">
     <div class="workout-details">
-      <p class="editable-field" data-attribute="weight" data-remote="true"><%= s.workout %></p>
-      <div class="addsymbol">
-        <a href="/trackers/new?session_id=<%= s.id %>" class="plus-icon"><i class="fas fa-plus"></i></a>
-      </div>
+      <p class="editable-field" data-attribute="weight" data-remote="true"><%= s.workout %> - <%= s.created_at.strftime('%B %e, %l:%M %p') %></p><a href="/trackers/new?session_id=<%= s.id %>" class="plus-icon"><i class="fas fa-plus"> Add Rep</i></a></p>
     </div>
   </div>
-<% end %>
 
-<% @track.each do |t| %>
-<div class="workoutcard">
-  <div class="tracker-item" data-id="<%= t.id %>">
-      <div class="numbers">
-        <div class="weightfield">
-          <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> KG</p>
-        </div>
-        <div class="repsfield">
-          <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
-        </div>
-        <div class="setsfield">
-          <p class "editable-field" data-attribute="sets" data-remote="true"><%= t.sets %> Sets</p>
+  <% matching_trackers = @track.select { |t| t.session_id == s.id } %>
+
+  <% matching_trackers.each do |t| %>
+    <div class="workoutcard">
+      <div class="tracker-item" data-id="<%= t.id %>">
+        <div class="numbers">
+          <div class="weightfield">
+            <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> KG</p>
+          </div>
+          <div class="repsfield">
+            <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
+          </div>
+          <div class="setsfield">
+          </div>
         </div>
       </div>
-  </div>
-</div>
+    </div>
+  <% end %>
 <% end %>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

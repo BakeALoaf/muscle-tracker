@@ -5,12 +5,26 @@ class SessionsController < ApplicationController
 
   def create
     @session = Session.new(session_params)
+    @session.created_at = Time.current
     if @session.save
-      redirect_to root_path
+      redirect_to trackers_path
     else
       puts "Session errors: #{@session.errors.full_messages}"
       render :new
     end
+  end
+
+  def update
+    @session = session.find(params[:id])
+    if @session.update(session_params)
+      render json: { success: true, message: 'session updated successfully' }
+    else
+      render jsQon: { success: false, message: @session.errors.full_messages.join(', ') }
+    end
+  end
+
+  def edit
+    @session = session.find(params[:id])
   end
 
   def session_params
