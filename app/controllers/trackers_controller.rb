@@ -8,16 +8,18 @@ class TrackersController < ApplicationController
   end
 
   def new
-    @session = Session.find(params[:session_id])
+    @session = Session.find_by(id: params[:session_id])
     @tracker = @session.trackers.build
   end
 
   def create
-    @session = Session.find(params[:session_id])
-    @tracker = @session.trackers.build(tracker_params)
-    if @tracker.save!
-      redirect_to trackers_path
+    @session = Session.find_by(id: params[:tracker][:session_id])
+    @tracker = Tracker.new(tracker_params)
+    @tracker.session = @session
+    if @tracker.save
+      redirect_to root_path
     else
+      flash[:error] = 'Tracker creation failed.'
       render :new
     end
   end
