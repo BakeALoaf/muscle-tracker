@@ -15,9 +15,10 @@ class TrackersController < ApplicationController
   def create
     @session = Session.find_by(id: params[:tracker][:session_id])
     @tracker = Tracker.new(tracker_params)
+    #matching_trackers = @track.select { |t| t.session_id == s.id }
     @tracker.session = @session
     if @tracker.save
-      redirect_to root_path
+      redirect_to trackers_path
     else
       flash[:error] = 'Tracker creation failed.'
       render :new
@@ -29,7 +30,7 @@ class TrackersController < ApplicationController
     if @tracker.update(tracker_params)
       render json: { success: true, message: 'Tracker updated successfully' }
     else
-      render json: { success: false, message: @tracker.errors.full_messages.join(', ') }
+      render jsQon: { success: false, message: @tracker.errors.full_messages.join(', ') }
     end
   end
 
