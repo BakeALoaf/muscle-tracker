@@ -1,4 +1,6 @@
 <%= form_for @tracker do |f| %>
+  <%= f.hidden_field :session_id, value: @session.id %>
+
   <%= f.label :weight %>
   <%= f.text_field :weight %>
 
