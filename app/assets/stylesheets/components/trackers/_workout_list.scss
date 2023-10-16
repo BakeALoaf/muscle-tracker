@@ -1,23 +1,72 @@
+.main-card {
+  background-color: rgb(25, 45, 66);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 5px;
+  width: 100%;
+}
+
 .workout_title {
   color: white;
   font-size: 1.4rem;
 }
 
 .workoutcard {
-  background-color: rgb(112, 109, 109);
-  border-radius: 15px;
+  background-color: rgb(25, 45, 66);
+  padding-top: 7px;
+  margin-right: -7px;
+  margin-top: 0.5px;
+  margin-bottom: 0.5px;
+  width: 100%;
+}
+
+.total {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(25, 45, 66);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   margin-bottom: 5px;
   padding-top: 7px;
-  padding-left: 7px;
+  margin-right: -7px;
+  width: 100%;
+}
+
+.tracker-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tracker {
+  margin-left: 7px;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }
 
 .numbers {
   display: inline-flex;
   align-items: center;
-  margin-right: 20px;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 7px;
+  padding-right: 7px;
+  // margin-right: 20px;
 }
 
 .editable-field {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.session-div {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0;
 }
 
@@ -25,4 +74,13 @@
   color: #fff;
   text-decoration: none;
   line-height: 1;
+}
+
+.plus-sign {
+  margin-left: 10px;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
