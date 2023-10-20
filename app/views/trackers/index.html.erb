@@ -1,5 +1,18 @@
 <h1>Workouts</h1>
 
+<div id="popup" class="popup">
+  <div id="popcont" class="popcont">
+    <div id="newSessionPopup" style="display: none;">
+      <h2>Create New Session</h2>
+      <%= form_with(model: Session.new, id: 'newSessionForm', local: true, url: sessions_path) do |form| %>
+        <%= form.label :workout %>
+        <%= form.text_field :workout, placeholder: 'Enter Session Name' %>
+        <%= form.submit 'Create' %>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
   <% @session.each do |s| %>
 <div class="main-card">
     <div class="tracker" data-id="<%= s.id %>">
@@ -44,7 +57,7 @@
     <% total_weight += t.weight.to_i %>
     <% total_reps += t.reps.to_i %>
     <% counter += 1 %>
-    
+
     <% end %>
   <div class="total">
     <div class="total-weight">
@@ -89,6 +102,34 @@
         success: function (response) {
         },
         error: function (error) {
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#createNewSessionButton').click(function (e) {
+      e.preventDefault();
+      $('#newSessionPopup').show();
+      $('#popup').show();
+    });
+
+    $('#newSessionForm').submit(function (e) {
+      e.preventDefault();
+      $('#newSessionPopup').hide();
+
+      $.ajax({
+        type: 'POST',
+        url: $('#newSessionForm').attr('action'),
+        data: $('#newSessionForm').serialize(),
+        success: function (response) {
+
+          location.reload();
+        },
+        error: function (error) {
+
         }
       });
     });
