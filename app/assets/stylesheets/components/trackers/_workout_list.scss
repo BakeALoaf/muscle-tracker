@@ -1,18 +1,27 @@
 .main-card {
-  background-color: rgb(25, 45, 66);
+  background-color: rgb(255, 255, 255);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-top: 5px;
   width: 100%;
 }
 
-.workout_title {
-  color: white;
-  font-size: 1.4rem;
+.title {
+  border-radius: 5px;
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.title h1 {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  color: #9a9999;
 }
 
 .workoutcard {
-  background-color: rgb(25, 45, 66);
+  background-color: rgb(255, 255, 255);
   padding-top: 7px;
   margin-right: -7px;
   margin-top: 0.5px;
@@ -24,7 +33,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(25, 45, 66);
+  background-color: rgb(255, 255, 255);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-bottom: 5px;
@@ -52,7 +61,7 @@
   justify-content: space-between;
   width: 100%;
   padding-left: 7px;
-  padding-right: 7px;
+  padding-right: 14px;
   // margin-right: 20px;
 }
 
@@ -83,4 +92,10 @@
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  background-color: #dedede;
 }
