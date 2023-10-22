@@ -1,4 +1,6 @@
-<h1>Workouts</h1>
+<div class="title">
+  <h1>Workouts</h1>
+</div>
 
 <div id="popup" class="popup">
   <div id="popcont" class="popcont">
@@ -13,64 +15,66 @@
   </div>
   </div>
 
-  <% @session.each do |s| %>
-<div class="main-card">
-    <div class="tracker" data-id="<%= s.id %>">
-      <div class="session-div">
-        <div class="workout-details">
-          <p class="editable-field" data-attribute="weight" data-remote="true"><%= s.workout %> - <%= s.created_at.strftime('%B %e, %l:%M %p') %></p>
-        </div>
-        <% if s.created_at.to_date == Date.today %>
-          <div class="plus-sign">
-            <a href="/trackers/new?session_id=<%= s.id %>" class="plus-icon"><i class="fas fa-plus"> Add Set</i></a>
-          </div>
-        <% end %>
-      </div>
-    </div>
-</div>
-
-  <% matching_trackers = @track.select { |t| t.session_id == s.id } %>
-  <% total_weight = 0 %>
-  <% total_reps = 0 %>
-  <% counter = 1 %>
-
-    <% matching_trackers.each do |t| %>
-      <div class="workoutcard">
-        <div class="tracker-item" data-id="<%= t.id %>">
-          <div class="numbers">
-            <div class="counter">
-              <p><%= counter %> </p>
-            </div>
-            <div class="weightfield">
-              <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> KG</p>
-            </div>
-            <div class="repsfield">
-              <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
-            </div>
-            <div class="repsfield">
-              <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
+    <% @session.each do |s| %>
+      <div class="shadow">
+      <div class="main-card">
+          <div class="tracker" data-id="<%= s.id %>">
+            <div class="session-div">
+              <div class="workout-details">
+                <p class="editable-field" data-attribute="weight" data-remote="true"><%= s.workout %> - <%= s.created_at.strftime('%B %e, %l:%M %p') %></p>
+              </div>
+              <% if s.created_at.to_date == Date.today %>
+                <div class="plus-sign">
+                  <a href="/trackers/new?session_id=<%= s.id %>" class="add-set-link plus-icon"><i class="fas fa-plus"> Set</i></a>
+                </div>
+              <% end %>
             </div>
           </div>
-        </div>
       </div>
 
-    <% total_weight += t.weight.to_i %>
-    <% total_reps += t.reps.to_i %>
-    <% counter += 1 %>
+    <% matching_trackers = @track.select { |t| t.session_id == s.id } %>
+    <% total_weight = 0 %>
+    <% total_reps = 0 %>
+    <% counter = 1 %>
 
+      <% matching_trackers.each do |t| %>
+        <div class="workoutcard">
+          <div class="tracker-item" data-id="<%= t.id %>">
+            <div class="numbers">
+              <div class="counter">
+                <p><%= counter %> </p>
+              </div>
+              <div class="weightfield">
+                <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> KG</p>
+              </div>
+              <div class="repsfield">
+                <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> Reps</p>
+              </div>
+              <div class="repsfield">
+                <p> <i class="fas fa-ellipsis-v"></i> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% total_weight += t.weight.to_i %>
+      <% total_reps += t.reps.to_i %>
+      <% counter += 1 %>
+
+          <% end %>
+        <div class="total">
+          <div class="total-weight">
+            <p>Total Weight: <%= total_weight %> KG</p>
+          </div>
+          <div class="total-reps">
+            <p>Total Reps: <%= total_reps %> Reps</p>
+          </div>
+          <div class="average-weight">
+            <p>Average Weight: <%= matching_trackers.empty? ? 0 : total_weight / matching_trackers.size %> KG</p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  <div class="total">
-    <div class="total-weight">
-      <p>Total Weight: <%= total_weight %> KG</p>
-    </div>
-    <div class="total-reps">
-      <p>Total Reps: <%= total_reps %> Reps</p>
-    </div>
-    <div class="average-weight">
-      <p>Average Weight: <%= matching_trackers.empty? ? 0 : total_weight / matching_trackers.size %> KG</p>
-    </div>
-  </div>
-  <% end %>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
