@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<% @session.each do |s| %>
+<% @session.reverse.each do |s| %>
   <div class="shadow">
   <div class="main-card">
       <div class="tracker" data-id="<%= s.id %>">
