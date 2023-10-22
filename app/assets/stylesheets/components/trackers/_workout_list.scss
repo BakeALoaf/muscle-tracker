@@ -20,6 +20,12 @@
   color: #9a9999;
 }
 
+.non-editable-text {
+  user-select: none;
+  pointer-events: none;
+}
+
+
 .workoutcard {
   background-color: rgb(255, 255, 255);
   padding-top: 7px;
