@@ -4,8 +4,13 @@
       <div class="footer-links">
           <li><a href="/"><i class="fas fa-home fa-lg"></i></a></li>
           <li><a href="#"><i class="fas fa-chart-line fa-lg"></i></a></li>
-          <li><a href="#" id="createNewSessionButton"><i class="fas fa-dumbbell fa-2x"></i>
-          <li><a href="/trackers"><i class="fas fa-clipboard fa-lg"></i></a></li>
+          <%unless current_page?("/") %>
+            <li><a href="#" id="createNewSessionButton"><i class="fas fa-dumbbell fa-2x"></i>
+            <li><a href="/trackers"><i class="fas fa-clipboard fa-lg"></i></a></li>
+          <%else%>
+            <li><a href="/trackers"><i class="fas fa-clipboard fa-2x"></i></a></li>
+            <li><a href="/trackers"><i class="fas fa-dumbbell fa-lg"></i></a></li>
+          <%end%>
           <li><a href="#"><i class="fas fa-cog fa-lg"></i></a></li>
       </div>
     </div>
