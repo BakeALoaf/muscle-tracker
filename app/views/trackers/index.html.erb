@@ -63,14 +63,17 @@
 
   <% end %>
     <div class="total">
-      <div class="total-weight">
-        <p>Total Weight: <%= total_weight %> KG</p>
+      <div class="total-card">
+        <p>Total Weight:</p>
+        <p><%= total_weight %> KG</p>
       </div>
-      <div class="total-reps">
-        <p>Total Reps: <%= total_reps %> Reps</p>
+      <div class="total-card">
+        <p>Total Reps:</p>
+        <p><%= total_reps %> Reps</p>
       </div>
-      <div class="average-weight">
-        <p>Average Weight: <%= matching_trackers.empty? ? 0 : total_weight / matching_trackers.size %> KG</p>
+      <div class="total-card">
+        <p>Average Weight:</p>
+        <p><%= matching_trackers.empty? ? 0 : total_weight / matching_trackers.size %> KG</p>
       </div>
     </div>
   </div>
