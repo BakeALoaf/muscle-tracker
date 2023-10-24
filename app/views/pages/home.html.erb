@@ -6,10 +6,26 @@
 
     $.get(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Hamburg`, function (data) {
       const temperatureCelsius = data.current.temp_c;
+      const weatherCode = data.current.condition.code;
       const forecast = data.current.condition.text;
 
       $('#temperature').text(temperatureCelsius);
       $('#forecast').text(forecast);
+
+      const weatherConditions = [
+        { code: 1000, message: 'It\'s a beautiful day! Enjoy an outdoor workout.' },
+        { code: 1003, message: 'It\'s partly cloudy today. You can still do an outdoor workout' },
+        { code: 1006, message: 'It\'s cloudy outside. You can still do an outdoor workout' },
+        { code: 1183, message: 'It\'s raining. A day to head to the gym' },
+      ];
+
+      const weatherMessage = weatherConditions.find(condition => condition.code === weatherCode);
+
+      if (weatherMessage) {
+        $('#weather-message').text(weatherMessage.message);
+      } else {
+        $('#weather-message').text('Sorry, I don\'t have information on this weather condition.');
+      }
     });
   });
 </script>
@@ -18,7 +34,9 @@
   <p>Today's Date: <span><%= date.strftime('%d-%m-%Y') %></span></p>
   <p>Temperature: <span id="temperature"></span>°C</p>
   <p>Forecast for the day: <span id="forecast"></span></p>
+  <p id="weather-message"></p>
 </div>
+
 
 
 
