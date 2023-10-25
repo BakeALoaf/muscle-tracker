@@ -12,3 +12,6 @@
     password: 'password@123'
   )
 end
+
+User.create(email: "demo@demo.com",
+password: "demo@demo.com")
