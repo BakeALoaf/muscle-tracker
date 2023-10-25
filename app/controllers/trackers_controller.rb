@@ -1,7 +1,8 @@
 class TrackersController < ApplicationController
   def index
+    @user = current_user
     @track = Tracker.all
-    @session = Session.all
+    @session = Session.where(user: @user)
   end
 
   def show
@@ -39,6 +40,6 @@ class TrackersController < ApplicationController
   end
 
   def tracker_params
-    params.require(:tracker).permit(:workout, :weight, :reps, :sets, :session_id)
+    params.require(:tracker).permit(:workout, :weight, :reps, :sets, :session_id, :user_id)
   end
 end

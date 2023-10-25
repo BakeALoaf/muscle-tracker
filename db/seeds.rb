@@ -6,16 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Tracking.create(
-  workout: "Bench Press",
-  weight: 10,
-  sets: 20,
-  reps: 30
-)
-
-Tracking.create(
-  workout: "Tricep Cables",
-  weight: 20,
-  sets: 40,
-  reps: 50
-)
+10.times do |i|
+  User.create(
+    email: Faker::Internet.email,
+    password: 'password@123'
+  )
+end
