@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(session_params)
     @session.created_at = Time.current
+    @session.user = current_user
     if @session.save
       redirect_to trackers_path
     else
@@ -28,6 +29,6 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:session).permit(:workout)
+    params.require(:session).permit(:workout, :user_id)
   end
 end

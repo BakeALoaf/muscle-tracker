@@ -11,7 +11,9 @@
             <li><a href="/trackers"><i class="fas fa-clipboard fa-2x"></i></a></li>
             <li><a href="/trackers"><i class="fas fa-dumbbell fa-lg"></i></a></li>
           <%end%>
-          <li><a href="#"><i class="fas fa-cog fa-lg"></i></a></li>
+          <li></label><%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+            <i class="fas fa-cog fa-lg"></i>
+          <% end %></li>
       </div>
     </div>
   </div>
