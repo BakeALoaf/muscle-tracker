@@ -12,12 +12,17 @@
       <h2>Create New Session</h2>
       <%= form_with(model: Session.new, id: 'newSessionForm', local: true, url: sessions_path) do |form| %>
         <%= form.label :workout %>
-        <%= form.text_field :workout, placeholder: 'Enter Session Name' %>
+        <%= form.select :workout, options_for_select([
+          ['Bench Press', 'bench_press'],
+          ['Straight Bar Curl', 'straight_bar_curl'],
+          ['Hammer Curls', 'hammer_curls'],
+        ]), {}, { id: 'workout-select' } %>
         <%= form.submit 'Create' %>
       <% end %>
     </div>
   </div>
 </div>
+
 
 <% @session.reverse.each do |s| %>
   <div class="shadow">
@@ -85,7 +90,12 @@
 <% end %>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#workout-select').select2();
+  });
+</script>
+
 
 <script>
   $(document).ready(function () {
