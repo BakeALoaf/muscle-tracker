@@ -21,7 +21,7 @@
 
 <% @session.reverse.each do |s| %>
   <div class="shadow">
-    <div class="main-card">
+    <div class="main-card" data-card-id="<%= s.id %>">
       <div class="tracker" data-id="<%= s.id %>">
         <div class="session-div">
           <div class="workout-details">
@@ -42,17 +42,17 @@
   <% counter = 1 %>
 
   <% matching_trackers.each do |t| %>
-    <div class="workoutcard">
+    <div class="workoutcard" data-card-id="<%= s.id %>">
       <div class="tracker-item" data-id="<%= t.id %>">
         <div class="numbers">
           <div class="counter">
             <p><%= counter %> </p>
           </div>
           <div class="weightfield">
-            <p class="editable-field" data-attribute="weight" data-remote="true"><%= t.weight %> </p><span> KG</span>
+            <p class="editable-field" data-attribute="weight" data-remote="true" ><%= t.weight %> </p><span> KG</span>
           </div>
           <div class="repsfield">
-            <p class="editable-field" data-attribute="reps" data-remote="true"><%= t.reps %> </p><span> Reps</span>
+            <p class="editable-field" data-attribute="reps" data-remote="true" draggable="true"><%= t.reps %> </p><span> Reps</span>
           </div>
           <div class="repsfield">
             <p> <i class="fas fa-ellipsis-v"></i> </p>
@@ -86,8 +86,19 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
   $(document).ready(function () {
+    $('.main-card').click(function () {
+      const cardId = $(this).data('card-id');
+      $('.workoutcard[data-card-id="' + cardId + '"]').toggleClass('hidden');
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+
     $('.editable-field').click(function () {
       $(this).attr('contenteditable', 'true');
     });
@@ -120,7 +131,6 @@
     });
   });
 </script>
-
 
 <script>
   $(document).ready(function () {
